@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from .models import Choice, Question
 
+
 class IndexView(ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -19,6 +20,7 @@ class IndexView(ListView):
             .filter(pub_date__lte=timezone.now())\
             .order_by('-pub_date')[:5]
 
+
 class DetailView(DetailView):
     model = Question
     template_name = 'polls/detail.html'
@@ -31,9 +33,11 @@ class DetailView(DetailView):
             pub_date__lte=timezone.now()
         )
 
+
 class ResultsView(DetailView):
     model = Question
     template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
